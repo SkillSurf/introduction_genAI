@@ -1,0 +1,21 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Session 01
+    chapters:
+    - file: notebooks/S1/Session1.md
+      sections:
+      - file: notebooks/S1/NB_1_1.ipynb
+      - file: notebooks/S1/NB_1_2.ipynb
+      - url: https://jupyterbook.org/en/stable/start/your-first-book.html
+        title: jupyter-books
+
+  - caption: Session 02
+    chapters:
+    - file: notebooks/S2/Session2.md
+      sections:
+      - file: notebooks/S2/NB_2_1.ipynb
+      - file: notebooks/S2/NB_2_2.ipynb

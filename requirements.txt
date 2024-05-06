@@ -1,0 +1,6 @@
+# Book development
+jupyter-book
+matplotlib
+numpy
+ghp-import
+sphinx
