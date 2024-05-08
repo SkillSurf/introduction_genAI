@@ -1,11 +1,8 @@
-# Welcome to your Jupyter Book
+# Welcome to Introduction to Generative AI Workshop
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+Explore the dynamic realm of Generative AI through an intensive one-day workshop tailored to unravel its core principles and spark your creativity. With the rising demand and future potential of Generative AI in the industry, ENTC, together with IEEE Sri Lanka Section and Skill Surf, aims to train engineers in this area. The "Introduction to Generative AI" workshop is a freely accessible opportunity for all interested individuals to delve into this cutting-edge field.
 
-Check out the content pages bundled with this sample book to see more.
+This book contains the notebooks and code for the hands-on sessions conducted during the workshop.
 
 ```{tableofcontents}
 ```
