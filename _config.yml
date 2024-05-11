@@ -3,7 +3,7 @@
 
 title: Introduction to Generative AI
 author: Skill Surf
-logo: media/logo.png
+logo: media/logo.jpg
 exclude_patterns: [.DS_Store, "**.ipynb_checkpoints", "**.pytest_cache", "tools"]
 
 # Launch on Google Colab button
