@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Content with notebooks &#8212; Introduction to Generative AI</title>
+    <title>Finetuning SDXL DreamBooth using AutoTrain &#8212; Introduction to Generative AI</title>
   
   
   
@@ -57,8 +57,6 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/S2/Session_2_2';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -190,7 +188,9 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Session2.html">Introduction to Diffusion models, Image generation basics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Session_2_1.html">Content with notebooks</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Content with notebooks</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Finetuning SDXL DreamBooth using AutoTrain</a></li>
+
+
 <li class="toctree-l2"><a class="reference external" href="https://jupyterbook.org/en/stable/start/your-first-book.html">jupyter-books</a></li>
 </ul>
 </li>
@@ -410,7 +410,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Content with notebooks</h1>
+    <h1>Finetuning SDXL DreamBooth using AutoTrain</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -420,10 +420,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-notebooks">Markdown + notebooks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#myst-markdown">MyST markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-blocks-and-outputs">Code blocks and outputs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Finetuning SDXL DreamBooth using AutoTrain</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-training-the-pre-trained-model">Part 1 - Training the pre-trained model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-autotrain">Installing AutoTrain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-a-training-session">Setting up a training session</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-model-weights-to-google-drive">Save model weights to Google Drive</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-generating-images">Part 2 - Generating images</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-modules-and-building-the-stable-diffusion-pipeline">Importing modules and building the Stable Diffusion pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-images-for-your-own-prompt">Generating images for your own prompt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-refining-the-generated-images">(Optional) - Refining the generated images</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -434,79 +445,223 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <table align="left">
+  <section class="tex2jax_ignore mathjax_ignore" id="finetuning-sdxl-dreambooth-using-autotrain">
+<h1>Finetuning SDXL DreamBooth using AutoTrain<a class="headerlink" href="#finetuning-sdxl-dreambooth-using-autotrain" title="Link to this heading">#</a></h1>
+<p>Introduction to Generative AI Workshop</p>
+<table align="left">
   <td>
     <a href="https://colab.research.google.com/github/SkillSurf/introduction_genAI/blob/main/notebooks/S2/Session_2_2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
   </td>
-</table><section class="tex2jax_ignore mathjax_ignore" id="content-with-notebooks">
-<h1>Content with notebooks<a class="headerlink" href="#content-with-notebooks" title="Link to this heading">#</a></h1>
-<p>You can also create content with Jupyter Notebooks. This means that you can include
-code blocks and their outputs in your book.</p>
-<section id="markdown-notebooks">
-<h2>Markdown + notebooks<a class="headerlink" href="#markdown-notebooks" title="Link to this heading">#</a></h2>
-<p>As it is markdown, you can embed images, HTML, etc into your posts!</p>
-<p><img alt="" src="https://myst-parser.readthedocs.io/en/latest/_static/logo-wide.svg" /></p>
-<p>You can also <span class="math notranslate nohighlight">\(add_{math}\)</span> and</p>
-<div class="math notranslate nohighlight">
-\[
-math^{blocks}
-\]</div>
-<p>or</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\mbox{mean} la_{tex} \\ \\
-math blocks
-\end{aligned}
-\end{split}\]</div>
-<p>But make sure you $Escape $your $dollar signs $you want to keep!</p>
+</table>
+<br />
+<br />
+<p>© SkillSurf 2024</p>
 </section>
-<section id="myst-markdown">
-<h2>MyST markdown<a class="headerlink" href="#myst-markdown" title="Link to this heading">#</a></h2>
-<p>MyST markdown works in Jupyter Notebooks as well. For more information about MyST markdown, check
-out <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST guide in Jupyter Book</a>,
-or see <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">the MyST markdown documentation</a>.</p>
-</section>
-<section id="code-blocks-and-outputs">
-<h2>Code blocks and outputs<a class="headerlink" href="#code-blocks-and-outputs" title="Link to this heading">#</a></h2>
-<p>Jupyter Book will also embed your code blocks and output in your book.
-For example, here’s some sample Matplotlib code:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-training-the-pre-trained-model">
+<h1>Part 1 - Training the pre-trained model<a class="headerlink" href="#part-1-training-the-pre-trained-model" title="Link to this heading">#</a></h1>
+<p>This notebook was created using the reference notebook published by <a class="reference external" href="https://colab.research.google.com/github/huggingface/autotrain-advanced/blob/main/colabs/AutoTrain_Dreambooth.ipynb">HuggingFace</a>.</p>
+<ul class="simple">
+<li><p><strong>Step 1</strong> - Upload images to a folder named <code class="docutils literal notranslate"><span class="pre">images/</span></code></p></li>
+<li><p><strong>Step 2</strong> - Choose a project name (optional)</p></li>
+<li><p><strong>Step 3</strong> - Update the prompt with a unique identifier (Choose a word that doesn’t appear in dictionaries)</p></li>
+<li><p><strong>Step 4</strong> - Run all cells in order until training is complete</p></li>
+</ul>
+<p>For original notebook/code visit:<a class="github reference external" href="https://github.com/huggingface/autotrain-advanced">huggingface/autotrain-advanced</a></p>
+<section id="installing-autotrain">
+<h2>Installing AutoTrain<a class="headerlink" href="#installing-autotrain" title="Link to this heading">#</a></h2>
+<p>For training through Google Colab we will need the CLI version of AutoTrain installed as a Python package. Use pip to download and install the necessary dependancies and packages to the working environment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install AutoTrain using pip</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">autotrain</span><span class="o">-</span><span class="n">advanced</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="setting-up-a-training-session">
+<h2>Setting up a training session<a class="headerlink" href="#setting-up-a-training-session" title="Link to this heading">#</a></h2>
+<p>The following parameters are fed into the AutoTrain CLI command as hyper-parameters needed for model training. Select <code class="docutils literal notranslate"><span class="pre">stabilityai/stable-diffusion-xl-base-1.0</span></code> as the model name and continue with these defualt settings.</p>
+<p>Feel free to experiment with the learning rate and epochs.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Remember to use a Unique identifier in the prompt. This identifier can be any token not commonly found in a dictionary.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic details</span>
+<span class="n">project_name</span> <span class="o">=</span> <span class="s1">&#39;skillsurfgenAI&#39;</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;stabilityai/stable-diffusion-xl-base-1.0&#39;</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;cartoon of a sks dog&#39;</span>
+
+<span class="c1"># Hyper-parameters</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-4</span>
+<span class="n">num_steps</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">gradient_accumulation</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">use_8bit_adam</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">use_xformers</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">mixed_precision</span> <span class="o">=</span> <span class="s2">&quot;fp16&quot;</span>
+<span class="n">train_text_encoder</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">disable_gradient_checkpointing</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Set up environment variables</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PROJECT_NAME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">project_name</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MODEL_NAME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model_name</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PROMPT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prompt</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LEARNING_RATE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;NUM_STEPS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;BATCH_SIZE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;GRADIENT_ACCUMULATION&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">gradient_accumulation</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;RESOLUTION&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">resolution</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;USE_8BIT_ADAM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">use_8bit_adam</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;USE_XFORMERS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">use_xformers</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MIXED_PRECISION&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">mixed_precision</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TRAIN_TEXT_ENCODER&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">train_text_encoder</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DISABLE_GRADIENT_CHECKPOINTING&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">disable_gradient_checkpointing</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes Colab can create unnecessary files which can throw erros when training. Run the following code to delete such files.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell to avoid errors</span>
+<span class="err">!</span><span class="n">rmdir</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">images</span><span class="o">/.</span><span class="n">ipynb_checkpoints</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code below runs a CLI command with the variables set-up above. Running this will start training the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the AutoTrain CLI command using parameteres given above</span>
+<span class="err">!</span><span class="n">autotrain</span> <span class="n">dreambooth</span> \
+<span class="o">--</span><span class="n">model</span> <span class="err">$</span><span class="p">{</span><span class="n">MODEL_NAME</span><span class="p">}</span> \
+<span class="o">--</span><span class="n">project</span><span class="o">-</span><span class="n">name</span> <span class="err">$</span><span class="p">{</span><span class="n">PROJECT_NAME</span><span class="p">}</span> \
+<span class="o">--</span><span class="n">image</span><span class="o">-</span><span class="n">path</span> <span class="n">images</span><span class="o">/</span> \
+<span class="o">--</span><span class="n">prompt</span> <span class="s2">&quot;$</span><span class="si">{PROMPT}</span><span class="s2">&quot;</span> \
+<span class="o">--</span><span class="n">resolution</span> <span class="err">$</span><span class="p">{</span><span class="n">RESOLUTION</span><span class="p">}</span> \
+<span class="o">--</span><span class="n">batch</span><span class="o">-</span><span class="n">size</span> <span class="err">$</span><span class="p">{</span><span class="n">BATCH_SIZE</span><span class="p">}</span> \
+<span class="o">--</span><span class="n">num</span><span class="o">-</span><span class="n">steps</span> <span class="err">$</span><span class="p">{</span><span class="n">NUM_STEPS</span><span class="p">}</span> \
+<span class="o">--</span><span class="n">gradient</span><span class="o">-</span><span class="n">accumulation</span> <span class="err">$</span><span class="p">{</span><span class="n">GRADIENT_ACCUMULATION</span><span class="p">}</span> \
+<span class="o">--</span><span class="n">lr</span> <span class="err">$</span><span class="p">{</span><span class="n">LEARNING_RATE</span><span class="p">}</span> \
+<span class="o">--</span><span class="n">mixed</span><span class="o">-</span><span class="n">precision</span> <span class="err">$</span><span class="p">{</span><span class="n">MIXED_PRECISION</span><span class="p">}</span> \
+<span class="err">$</span><span class="p">(</span> <span class="p">[[</span> <span class="s2">&quot;$USE_XFORMERS&quot;</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span> <span class="p">]]</span> <span class="o">&amp;&amp;</span> <span class="n">echo</span> <span class="s2">&quot;--xformers&quot;</span> <span class="p">)</span> \
+<span class="err">$</span><span class="p">(</span> <span class="p">[[</span> <span class="s2">&quot;$TRAIN_TEXT_ENCODER&quot;</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span> <span class="p">]]</span> <span class="o">&amp;&amp;</span> <span class="n">echo</span> <span class="s2">&quot;--train-text-encoder&quot;</span> <span class="p">)</span> \
+<span class="err">$</span><span class="p">(</span> <span class="p">[[</span> <span class="s2">&quot;$USE_8BIT_ADAM&quot;</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span> <span class="p">]]</span> <span class="o">&amp;&amp;</span> <span class="n">echo</span> <span class="s2">&quot;--use-8bit-adam&quot;</span> <span class="p">)</span> \
+<span class="err">$</span><span class="p">(</span> <span class="p">[[</span> <span class="s2">&quot;$DISABLE_GRADIENT_CHECKPOINTING&quot;</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span> <span class="p">]]</span> <span class="o">&amp;&amp;</span> <span class="n">echo</span> <span class="s2">&quot;--disable_gradient-checkpointing&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-model-weights-to-google-drive">
+<h2>Save model weights to Google Drive<a class="headerlink" href="#save-model-weights-to-google-drive" title="Link to this heading">#</a></h2>
+<p>Now that we have trained the model for a long time, we don’t want to lose the weights when we close the browser. So we can either download the folder with the <code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">name</span></code> from the file browser in Colab or we can save it to our Google Drive using the code below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mount Google Drive onto Colab Folder</span>
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fixing random state for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span>
-<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycler</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)))</span>
-
-
-<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
-<span class="n">custom_lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">.5</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">1.</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)]</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">custom_lines</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Cold&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Hot&#39;</span><span class="p">]);</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy session folder into a folder in the drive</span>
+<span class="err">!</span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">skillsurfGenAI</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">drive</span><span class="o">/</span><span class="n">MyDrive</span><span class="o">/</span><span class="n">Dreambooth</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>There is a lot more that you can do with outputs (such as including interactive outputs)
-with your book. For more information about this, see <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-generating-images">
+<h1>Part 2 - Generating images<a class="headerlink" href="#part-2-generating-images" title="Link to this heading">#</a></h1>
+<p>Now that we have trained a large model, our resources have been occupied. We should free the occupied RAM and GPU RAM before generating images. To do that, restart the runtime session and proceed with the cells below.</p>
+<section id="importing-modules-and-building-the-stable-diffusion-pipeline">
+<h2>Importing modules and building the Stable Diffusion pipeline<a class="headerlink" href="#importing-modules-and-building-the-stable-diffusion-pipeline" title="Link to this heading">#</a></h2>
+<p>We have the model weights in our project folder. They are saved as <code class="docutils literal notranslate"><span class="pre">pytorch_lora_weights.safetensors</span></code>. Now we will use Diffusers Python package to do the inferencing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the diffusion pipeline and PyTorch</span>
+<span class="kn">from</span> <span class="nn">diffusers</span> <span class="kn">import</span> <span class="n">DiffusionPipeline</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># Set up model details (Enter the path of your project folder)</span>
+<span class="n">prj_path</span> <span class="o">=</span> <span class="s2">&quot;/content/skillsurfgenAI&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;stabilityai/stable-diffusion-xl-base-1.0&quot;</span>
+
+<span class="c1"># Create an instance of the pipeline</span>
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">DiffusionPipeline</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Send the pipeline to the GPU and load the finetuned weights</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">load_lora_weights</span><span class="p">(</span><span class="n">prj_path</span><span class="p">,</span> <span class="n">weight_name</span><span class="o">=</span><span class="s2">&quot;pytorch_lora_weights.safetensors&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generating-images-for-your-own-prompt">
+<h2>Generating images for your own prompt<a class="headerlink" href="#generating-images-for-your-own-prompt" title="Link to this heading">#</a></h2>
+<p>Finally, it’s time to test out the finetuned model with our own prompts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your own script, make it longer to be more specific</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;cartoon of a sks dog as a Jedi holding a lightsaber, Star Wars, hyper detailed background, character concept, full body, dynamic pose, intricate,</span>
+<span class="s2">            highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, square thumbnail, 4k, uhd,</span>
+<span class="s2">            art by artgerm and greg rutkowski and alphonse mucha&quot;&quot;&quot;</span>
+
+<span class="c1"># Create the image and save it</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">)</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;generated_image.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="optional-refining-the-generated-images">
+<h2>(Optional) - Refining the generated images<a class="headerlink" href="#optional-refining-the-generated-images" title="Link to this heading">#</a></h2>
+<p>Diffusers package comes with a built-in refiner. It can upscale the generated images increasing their quality. But due to the free resource limitation in Google Colab, using the generator pipeline and the refiner together will use up all the available RAM and GPU RAM. So the following code cannot be run on Google Colab free version.</p>
+<p>However if you have purchased Colab computing units or have a good enough GPU on your local machine feel free to run this code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import refiner from Stable Diffusion</span>
+<span class="kn">from</span> <span class="nn">diffusers</span> <span class="kn">import</span> <span class="n">StableDiffusionXLImg2ImgPipeline</span>
+
+<span class="c1"># Initialize refiner</span>
+<span class="n">refiner</span> <span class="o">=</span> <span class="n">StableDiffusionXLImg2ImgPipeline</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s2">&quot;stabilityai/stable-diffusion-xl-refiner-1.0&quot;</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">refiner</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create new prompt</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;cartoon of a sks dog riding a formula one race car, comic art, studio ghibli style&quot;</span>
+
+<span class="c1"># Generate new image</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">)</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Refine the image</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">refiner</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;refined_image.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -565,10 +720,21 @@ with your book. For more information about this, see <a class="reference externa
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-notebooks">Markdown + notebooks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#myst-markdown">MyST markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-blocks-and-outputs">Code blocks and outputs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Finetuning SDXL DreamBooth using AutoTrain</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-training-the-pre-trained-model">Part 1 - Training the pre-trained model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-autotrain">Installing AutoTrain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-a-training-session">Setting up a training session</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-model-weights-to-google-drive">Save model weights to Google Drive</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-generating-images">Part 2 - Generating images</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-modules-and-building-the-stable-diffusion-pipeline">Importing modules and building the Stable Diffusion pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-images-for-your-own-prompt">Generating images for your own prompt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-refining-the-generated-images">(Optional) - Refining the generated images</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
