@@ -192,6 +192,8 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Finetuning SDXL DreamBooth using AutoTrain</a></li>
 
 
+
+
 <li class="toctree-l2"><a class="reference external" href="https://jupyterbook.org/en/stable/start/your-first-book.html">jupyter-books</a></li>
 </ul>
 </details></li>
@@ -434,6 +436,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-refining-the-generated-images">(Optional) - Refining the generated images</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-next">What next?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-links">References and Links</a></li>
 </ul>
 
             </nav>
@@ -492,9 +496,9 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic details</span>
-<span class="n">project_name</span> <span class="o">=</span> <span class="s1">&#39;skillsurfgenAI&#39;</span>
+<span class="n">project_name</span> <span class="o">=</span> <span class="s1">&#39;dogexample&#39;</span>
 <span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;stabilityai/stable-diffusion-xl-base-1.0&#39;</span>
-<span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;cartoon of a sks dog&#39;</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;a photo of a sks dog&#39;</span>
 
 <span class="c1"># Hyper-parameters</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-4</span>
@@ -574,7 +578,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy session folder into a folder in the drive</span>
-<span class="err">!</span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">skillsurfGenAI</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">drive</span><span class="o">/</span><span class="n">MyDrive</span><span class="o">/</span><span class="n">Dreambooth</span>
+<span class="err">!</span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">dogexample</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">drive</span><span class="o">/</span><span class="n">MyDrive</span><span class="o">/</span><span class="n">Dreambooth</span><span class="o">/</span><span class="n">dogexample</span>
 </pre></div>
 </div>
 </div>
@@ -594,7 +598,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="c1"># Set up model details (Enter the path of your project folder)</span>
-<span class="n">prj_path</span> <span class="o">=</span> <span class="s2">&quot;/content/skillsurfgenAI&quot;</span>
+<span class="n">prj_path</span> <span class="o">=</span> <span class="s2">&quot;/content/dogexample&quot;</span>
 <span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;stabilityai/stable-diffusion-xl-base-1.0&quot;</span>
 
 <span class="c1"># Create an instance of the pipeline</span>
@@ -617,7 +621,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your own script, make it longer to be more specific</span>
-<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;cartoon of a sks dog as a Jedi holding a lightsaber, Star Wars, hyper detailed background, character concept, full body, dynamic pose, intricate,</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;a cartoon of a sks dog as a Jedi holding a lightsaber, Star Wars, hyper detailed background, character concept, full body, dynamic pose, intricate,</span>
 <span class="s2">            highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, square thumbnail, 4k, uhd,</span>
 <span class="s2">            art by artgerm and greg rutkowski and alphonse mucha&quot;&quot;&quot;</span>
 
@@ -630,6 +634,27 @@ document.write(`
 </div>
 </div>
 </div>
+<p>You can view the generated image in the folder directory in the left of the Colab Workspace. Otherwise run the following code to plot it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
+
+<span class="c1"># Load the image</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;/content/generated_image.png&quot;</span><span class="p">)</span>
+
+<span class="c1"># Display the image</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>  <span class="c1"># Hide the axis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7c55fea350ce059d811dba6749674e5894f2a95f4bbc22eb4e307b35c65175dd.png" src="../../_images/7c55fea350ce059d811dba6749674e5894f2a95f4bbc22eb4e307b35c65175dd.png" />
+</div>
+</div>
+<p>You can clearly see that the model has now learned the features of our example dog and identifies him as a specific entity.</p>
 </section>
 <section id="optional-refining-the-generated-images">
 <h2>(Optional) - Refining the generated images<a class="headerlink" href="#optional-refining-the-generated-images" title="Link to this heading">#</a></h2>
@@ -664,6 +689,24 @@ document.write(`
 </div>
 </div>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="what-next">
+<h1>What next?<a class="headerlink" href="#what-next" title="Link to this heading">#</a></h1>
+<p>You can now finetune SDXL for your own images. Here’s what you can try next.</p>
+<ul class="simple">
+<li><p>Use AutoTrain in HuggingFace Spaces</p></li>
+<li><p>Generate multiple images from one prompt</p></li>
+<li><p>Add negative prompt functionality</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references-and-links">
+<h1>References and Links<a class="headerlink" href="#references-and-links" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/huggingface/autotrain-advanced">AutoTrain Github Repository</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=9nniwr-7Em8&amp;amp;t=699s">How to train your own AI image models without breaking the bank</a></p></li>
+<li><p><a class="reference external" href="https://dreambooth.github.io/">Dreambooth Paper</a></p></li>
+<li><p><a class="reference external" href="https://huggingface.co/spaces">Hugging Face Spaces</a></p></li>
+</ol>
 </section>
 
     <script type="text/x-thebe-config">
@@ -734,6 +777,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-refining-the-generated-images">(Optional) - Refining the generated images</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-next">What next?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-links">References and Links</a></li>
 </ul>
 
   </nav></div>
