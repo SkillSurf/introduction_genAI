@@ -1,4 +1,3 @@
-```markdown
 # Introduction to Building nanoGPT
 
 In this tutorial, we will guide you through the process of building a smaller, more accessible version of a Generative Pre-trained Transformer (GPT), referred to as nanoGPT. This project is inspired by Andrej Karpathy's work and aims to simplify the complex architecture of GPT models into manageable steps.
@@ -36,4 +35,3 @@ In this section, we look at adding a feedforward neural network to process the o
 Finally, we look at how to train and evaluate your nanoGPT model. We will provide instructions on setting up the training loop, monitoring the training progress, and evaluating the model's performance. By the end of this section, you will have a working nanoGPT model capable of generating text in the style of Shakespeare.
 
 By following this tutorial, you will gain a comprehensive understanding of the fundamental components of GPT models and how to implement them from scratch. Let's get started on building your very own nanoGPT!
-```
