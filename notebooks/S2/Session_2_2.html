@@ -14,19 +14,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
@@ -34,12 +34,12 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -70,23 +70,27 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -108,13 +112,8 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
     </header>
   
 
@@ -178,25 +177,23 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Session 01</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../S1/Session1.html">Introduction to Transformers, Engineering basics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../S1/Session1.html">Introduction to Transformers, Engineering basics</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../S1/Session_1_1.html">Content with notebooks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../S1/Session_1_2.html">Content with notebooks</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://jupyterbook.org/en/stable/start/your-first-book.html">jupyter-books</a></li>
 </ul>
-</details></li>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Session 02</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="Session2.html">Introduction to Diffusion models, Image generation basics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Session2.html">Introduction to Diffusion models, Image generation basics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Session_2_1.html">Content with notebooks</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Finetuning SDXL DreamBooth using AutoTrain</a></li>
 
 
-
-
 <li class="toctree-l2"><a class="reference external" href="https://jupyterbook.org/en/stable/start/your-first-book.html">jupyter-books</a></li>
 </ul>
-</details></li>
+</li>
 </ul>
 
     </div>
@@ -212,7 +209,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -221,7 +218,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -436,8 +433,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-refining-the-generated-images">(Optional) - Refining the generated images</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-next">What next?</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-links">References and Links</a></li>
 </ul>
 
             </nav>
@@ -472,7 +467,6 @@ document.write(`
 <li><p><strong>Step 4</strong> - Run all cells in order until training is complete</p></li>
 </ul>
 <p>For original notebook/code visit:<a class="github reference external" href="https://github.com/huggingface/autotrain-advanced">huggingface/autotrain-advanced</a></p>
-<p>In this notebook, we will be using 5 example images of a dog to finetune SDXL to that specific dog. The dataset was obtained from <a class="reference external" href="https://huggingface.co/datasets/diffusers/dog-example/tree/main">HuggingFace</a>.</p>
 <section id="installing-autotrain">
 <h2>Installing AutoTrain<a class="headerlink" href="#installing-autotrain" title="Link to this heading">#</a></h2>
 <p>For training through Google Colab we will need the CLI version of AutoTrain installed as a Python package. Use pip to download and install the necessary dependancies and packages to the working environment.</p>
@@ -497,9 +491,9 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic details</span>
-<span class="n">project_name</span> <span class="o">=</span> <span class="s1">&#39;dogexample&#39;</span>
+<span class="n">project_name</span> <span class="o">=</span> <span class="s1">&#39;skillsurfgenAI&#39;</span>
 <span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;stabilityai/stable-diffusion-xl-base-1.0&#39;</span>
-<span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;a photo of a sks dog&#39;</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;cartoon of a sks dog&#39;</span>
 
 <span class="c1"># Hyper-parameters</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-4</span>
@@ -579,7 +573,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy session folder into a folder in the drive</span>
-<span class="err">!</span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">dogexample</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">drive</span><span class="o">/</span><span class="n">MyDrive</span><span class="o">/</span><span class="n">Dreambooth</span><span class="o">/</span><span class="n">dogexample</span>
+<span class="err">!</span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">skillsurfGenAI</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">drive</span><span class="o">/</span><span class="n">MyDrive</span><span class="o">/</span><span class="n">Dreambooth</span>
 </pre></div>
 </div>
 </div>
@@ -599,7 +593,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="c1"># Set up model details (Enter the path of your project folder)</span>
-<span class="n">prj_path</span> <span class="o">=</span> <span class="s2">&quot;/content/dogexample&quot;</span>
+<span class="n">prj_path</span> <span class="o">=</span> <span class="s2">&quot;/content/skillsurfgenAI&quot;</span>
 <span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;stabilityai/stable-diffusion-xl-base-1.0&quot;</span>
 
 <span class="c1"># Create an instance of the pipeline</span>
@@ -622,7 +616,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your own script, make it longer to be more specific</span>
-<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;a cartoon of a sks dog as a Jedi holding a lightsaber, Star Wars, hyper detailed background, character concept, full body, dynamic pose, intricate,</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;cartoon of a sks dog as a Jedi holding a lightsaber, Star Wars, hyper detailed background, character concept, full body, dynamic pose, intricate,</span>
 <span class="s2">            highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, square thumbnail, 4k, uhd,</span>
 <span class="s2">            art by artgerm and greg rutkowski and alphonse mucha&quot;&quot;&quot;</span>
 
@@ -635,27 +629,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p>You can view the generated image in the folder directory in the left of the Colab Workspace. Otherwise run the following code to plot it.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
-
-<span class="c1"># Load the image</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;/content/generated_image.png&quot;</span><span class="p">)</span>
-
-<span class="c1"># Display the image</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>  <span class="c1"># Hide the axis</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/7c55fea350ce059d811dba6749674e5894f2a95f4bbc22eb4e307b35c65175dd.png" src="../../_images/7c55fea350ce059d811dba6749674e5894f2a95f4bbc22eb4e307b35c65175dd.png" />
-</div>
-</div>
-<p>You can clearly see that the model has now learned the features of our example dog and identifies him as a specific entity.</p>
 </section>
 <section id="optional-refining-the-generated-images">
 <h2>(Optional) - Refining the generated images<a class="headerlink" href="#optional-refining-the-generated-images" title="Link to this heading">#</a></h2>
@@ -691,24 +664,6 @@ document.write(`
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="what-next">
-<h1>What next?<a class="headerlink" href="#what-next" title="Link to this heading">#</a></h1>
-<p>You can now finetune SDXL for your own images. Here’s what you can try next.</p>
-<ul class="simple">
-<li><p>Use AutoTrain in HuggingFace Spaces</p></li>
-<li><p>Generate multiple images from one prompt</p></li>
-<li><p>Add negative prompt functionality</p></li>
-</ul>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="references-and-links">
-<h1>References and Links<a class="headerlink" href="#references-and-links" title="Link to this heading">#</a></h1>
-<ol class="arabic simple">
-<li><p><a class="reference external" href="https://github.com/huggingface/autotrain-advanced">AutoTrain Github Repository</a></p></li>
-<li><p><a class="reference external" href="https://www.youtube.com/watch?v=9nniwr-7Em8&amp;amp;t=699s">How to train your own AI image models without breaking the bank</a></p></li>
-<li><p><a class="reference external" href="https://dreambooth.github.io/">Dreambooth Paper</a></p></li>
-<li><p><a class="reference external" href="https://huggingface.co/spaces">Hugging Face Spaces</a></p></li>
-</ol>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -737,7 +692,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer d-print-none">
+                <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -778,8 +733,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-refining-the-generated-images">(Optional) - Refining the generated images</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-next">What next?</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-links">References and Links</a></li>
 </ul>
 
   </nav></div>
@@ -829,8 +782,8 @@ By Skill Surf
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
