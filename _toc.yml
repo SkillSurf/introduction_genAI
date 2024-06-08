@@ -10,14 +10,13 @@ parts:
       sections:
       - file: notebooks/S1/Session_1_1.ipynb
       - file: notebooks/S1/Session_1_2.ipynb
-      - url: https://jupyterbook.org/en/stable/start/your-first-book.html
-        title: jupyter-books
+      - file: notebooks/S1/Session_1_3.ipynb
+      - file: notebooks/S1/Session_1_4.ipynb
+      - file: notebooks/S1/Session_1_5.ipynb
+      - file: notebooks/S1/Session_1_6.ipynb
 
   - caption: Session 02
     chapters:
     - file: notebooks/S2/Session2.md
       sections:
       - file: notebooks/S2/Session_2_1.ipynb
-      - file: notebooks/S2/Session_2_2.ipynb
-      - url: https://jupyterbook.org/en/stable/start/your-first-book.html
-        title: jupyter-books
