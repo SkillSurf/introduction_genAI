@@ -9,6 +9,7 @@ parts:
     - url: https://github.com/SkillSurf/introduction_genAI/blob/main/slides/Attention%20Basics.pdf
       title: Slides on Attention & Transformers
     - file: notebooks/S1/Session1.md
+      title: Building nanoGPT
       sections:
       - file: notebooks/S1/Session_1_1.ipynb
       - file: notebooks/S1/Session_1_2.ipynb
@@ -19,8 +20,6 @@ parts:
 
   - caption: Session 02
     chapters:
-    - file: notebooks/S2/Session2.md
-      sections:
-      - url: https://github.com/SkillSurf/introduction_genAI/blob/main/slides/finetuning%20SDXL.pdf
-        title: Slides on finetuning
-      - file: notebooks/S2/Session_2_1.ipynb
+    - url: https://github.com/SkillSurf/introduction_genAI/blob/main/slides/finetuning%20SDXL.pdf
+      title: Slides on finetuning
+    - file: notebooks/S2/Session_2_1.ipynb
