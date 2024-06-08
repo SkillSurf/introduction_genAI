@@ -1,6 +1,6 @@
 # Introduction to Building nanoGPT
 
-In this tutorial, we will guide you through the process of building a smaller, more accessible version of a Generative Pre-trained Transformer (GPT), referred to as nanoGPT. This project is inspired by Andrej Karpathy's work and aims to simplify the complex architecture of GPT models into manageable steps.
+In this tutorial, we will guide you through the process of building a smaller, more accessible version of a Generative Pre-trained Transformer (GPT), referred to as nanoGPT. This project is inspired by [Andrej Karpathy's work](https://www.youtube.com/watch?v=kCc8FmEb1nY) and aims to simplify the complex architecture of GPT models into manageable steps.
 
 ## Getting Started
 
