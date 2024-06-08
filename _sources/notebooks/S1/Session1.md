@@ -32,6 +32,6 @@ In this section, we look at adding a feedforward neural network to process the o
 
 ## Training and Evaluating nanoGPT
 
-Finally, we look at how to train and evaluate your nanoGPT model. We will provide instructions on setting up the training loop, monitoring the training progress, and evaluating the model's performance. By the end of this section, you will have a working nanoGPT model capable of generating text in the style of Shakespeare.
+We will be looking at several variants of models. For each version of the model, we look at how to train and evaluate it.
 
 By following this tutorial, you will gain a comprehensive understanding of the fundamental components of GPT models and how to implement them from scratch. Let's get started on building your very own nanoGPT!
