@@ -1,38 +1,39 @@
-# Introduction to Transformers, Engineering basics
+```markdown
+# Introduction to Building nanoGPT
 
-Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
-in regular markdown files (`.md`), you'll write in the same flavor of markdown
-called **MyST Markdown**.
-This is a simple file to help you get started and show off some syntax.
+In this tutorial, we will guide you through the process of building a smaller, more accessible version of a Generative Pre-trained Transformer (GPT), referred to as nanoGPT. This project is inspired by Andrej Karpathy's work and aims to simplify the complex architecture of GPT models into manageable steps.
 
-## What is MyST?
+## Getting Started
 
-MyST stands for "Markedly Structured Text". It
-is a slight variation on a flavor of markdown called "CommonMark" markdown,
-with small syntax extensions to allow you to write **roles** and **directives**
-in the Sphinx ecosystem.
+In this section, we look at how to prepare your environment for developing nanoGPT. We will begin by setting up the necessary tools and dependencies. First, ensure you have Python and PyTorch installed. If not, you can follow the installation instructions from the PyTorch website. Additionally, we will be using a small dataset called "Tiny Shakespeare" to train our model.
 
-For more about MyST, see [the MyST Markdown Overview](https://jupyterbook.org/content/myst.html).
+## Understanding Tokenization and Encoding
 
-## Sample Roles and Directives
+Next, we delve into the basics of tokenization and encoding. In this section, we will explain how to convert text data into a format suitable for the model. You will learn how to create a vocabulary from the dataset, assign unique numerical values (tokens) to each character, and map these tokens back to characters for text generation.
 
-Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but **roles are written in one line**, whereas
-**directives span many lines**. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.
+## Building the Embedding Layer
 
-Here is a "note" directive:
+In this part, we look at constructing the embedding layer, a crucial component that converts tokens into dense vectors. These vectors capture the semantic meaning of the tokens, which the model uses for further processing. We will walk you through the implementation of a token embedding table and how to use it in our model.
 
-```{note}
-Here is a note
+## Adding Positional Embeddings
+
+Since our model needs to understand the order of tokens, we introduce positional embeddings. In this section, we will add positional information to our token embeddings to help the model recognize the sequence of tokens. You will learn how to implement and integrate positional embeddings into your model.
+
+## Implementing the Attention Mechanism
+
+Here, we look at the core of the Transformer architecture: the attention mechanism. We will explain the concept of self-attention and how it allows the model to focus on relevant parts of the input sequence. You will learn how to implement a simple attention mechanism and see it in action.
+
+## Introducing Multi-Head Self-Attention
+
+To improve the model's ability to capture different aspects of the input data, we introduce multi-head self-attention. This section will guide you through the implementation of multiple attention heads and how they work together to enhance the model's performance.
+
+## Building the Feedforward Neural Network
+
+In this section, we look at adding a feedforward neural network to process the output of the attention mechanism. This network helps the model make sense of the information gathered during the attention phase. You will learn how to construct and integrate this network into your nanoGPT model.
+
+## Training and Evaluating nanoGPT
+
+Finally, we look at how to train and evaluate your nanoGPT model. We will provide instructions on setting up the training loop, monitoring the training progress, and evaluating the model's performance. By the end of this section, you will have a working nanoGPT model capable of generating text in the style of Shakespeare.
+
+By following this tutorial, you will gain a comprehensive understanding of the fundamental components of GPT models and how to implement them from scratch. Let's get started on building your very own nanoGPT!
 ```
-
-It will be rendered in a special box when you build your book.
-
-## Learn more
-
-This is just a simple starter to get you started.
-You can learn a lot more at [jupyterbook.org](https://jupyterbook.org).
-
