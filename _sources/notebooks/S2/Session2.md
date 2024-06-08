@@ -1,37 +1,25 @@
-# Introduction to Diffusion models, Image generation basics
+# Introduction to Fine-Tuning Stable Diffusion XL
 
-Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
-in regular markdown files (`.md`), you'll write in the same flavor of markdown
-called **MyST Markdown**.
-This is a simple file to help you get started and show off some syntax.
+In this tutorial, we will walk you through the process of fine-tuning Stable Diffusion XL (SDXL) using Dreambooth with AutoTrain. This project is designed to simplify the fine-tuning process, making it accessible even if you are new to machine learning and image generation models.
 
-## What is MyST?
+## Getting Started
 
-MyST stands for "Markedly Structured Text". It
-is a slight variation on a flavor of markdown called "CommonMark" markdown,
-with small syntax extensions to allow you to write **roles** and **directives**
-in the Sphinx ecosystem.
+In this section, we look at how to prepare your environment for fine-tuning SDXL. We'll start by setting up the necessary tools and dependencies, including AutoTrain, PyTorch, and the diffusers library. We'll also explain how to load and preprocess your custom images, which will be used to fine-tune the model.
 
-For more about MyST, see [the MyST Markdown Overview](https://jupyterbook.org/content/myst.html).
+## Understanding Dreambooth
 
-## Sample Roles and Directives
+We delve into the Dreambooth technique, a powerful method for fine-tuning models with custom datasets. Dreambooth allows you to personalize the model by training it with a small set of images, enhancing its ability to generate more accurate and relevant outputs based on your specific requirements.
 
-Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but **roles are written in one line**, whereas
-**directives span many lines**. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.
+## Setting Up AutoTrain
 
-Here is a "note" directive:
+In this part, we look at using AutoTrain CLI, a command line tool from Hugging Face that automates the training process. We'll guide you through the setup of AutoTrain on Google Colab Workspace, where you can easily train SDXL for free and adjust hyperparameters without needing extensive coding knowledge.
 
-```{note}
-Here is a note
-```
+## Generating and Refining Images
 
-It will be rendered in a special box when you build your book.
+Once the model is fine-tuned, we look at generating new images based on your prompts. We will also explore the capability of the built-in refiner in the diffusers package, which can upscale and enhance the quality of the generated images.
 
-## Learn more
+## Conclusion and Next Steps
 
-This is just a simple starter to get you started.
-You can learn a lot more at [jupyterbook.org](https://jupyterbook.org).
+Finally, we look at the next steps you can take after fine-tuning your model. You can explore additional features of AutoTrain, share your model on Hugging Face Spaces, or even delve deeper into other fine-tuning techniques to further customize your image generation models.
+
+By following this tutorial, you will gain a comprehensive understanding of fine-tuning Stable Diffusion XL using Dreambooth and AutoTrain. Let's get started on creating your personalized image generation model!

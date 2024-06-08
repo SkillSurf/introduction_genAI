@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction to Diffusion models, Image generation basics &#8212; Introduction to Generative AI</title>
+    <title>Introduction to Fine-Tuning Stable Diffusion XL &#8212; Introduction to Generative AI</title>
   
   
   
@@ -189,7 +189,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Session 02</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction to Diffusion models, Image generation basics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction to Fine-Tuning Stable Diffusion XL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Session_2_1.html">Finetuning SDXL DreamBooth using AutoTrain</a></li>
 
 
@@ -382,7 +382,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to Diffusion models, Image generation basics</h1>
+    <h1>Introduction to Fine-Tuning Stable Diffusion XL</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,9 +392,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-dreambooth">Understanding Dreambooth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-autotrain">Setting Up AutoTrain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-and-refining-images">Generating and Refining Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-and-next-steps">Conclusion and Next Steps</a></li>
 </ul>
             </nav>
         </div>
@@ -406,39 +408,29 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-diffusion-models-image-generation-basics">
-<h1>Introduction to Diffusion models, Image generation basics<a class="headerlink" href="#introduction-to-diffusion-models-image-generation-basics" title="Link to this heading">#</a></h1>
-<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
-in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
-called <strong>MyST Markdown</strong>.
-This is a simple file to help you get started and show off some syntax.</p>
-<section id="what-is-myst">
-<h2>What is MyST?<a class="headerlink" href="#what-is-myst" title="Link to this heading">#</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
-<p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-fine-tuning-stable-diffusion-xl">
+<h1>Introduction to Fine-Tuning Stable Diffusion XL<a class="headerlink" href="#introduction-to-fine-tuning-stable-diffusion-xl" title="Link to this heading">#</a></h1>
+<p>In this tutorial, we will walk you through the process of fine-tuning Stable Diffusion XL (SDXL) using Dreambooth with AutoTrain. This project is designed to simplify the fine-tuning process, making it accessible even if you are new to machine learning and image generation models.</p>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<p>In this section, we look at how to prepare your environment for fine-tuning SDXL. We’ll start by setting up the necessary tools and dependencies, including AutoTrain, PyTorch, and the diffusers library. We’ll also explain how to load and preprocess your custom images, which will be used to fine-tune the model.</p>
 </section>
-<section id="sample-roles-and-directives">
-<h2>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Link to this heading">#</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<p>Here is a “note” directive:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
-</div>
-<p>It will be rendered in a special box when you build your book.</p>
+<section id="understanding-dreambooth">
+<h2>Understanding Dreambooth<a class="headerlink" href="#understanding-dreambooth" title="Link to this heading">#</a></h2>
+<p>We delve into the Dreambooth technique, a powerful method for fine-tuning models with custom datasets. Dreambooth allows you to personalize the model by training it with a small set of images, enhancing its ability to generate more accurate and relevant outputs based on your specific requirements.</p>
 </section>
-<section id="learn-more">
-<h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
-<p>This is just a simple starter to get you started.
-You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
+<section id="setting-up-autotrain">
+<h2>Setting Up AutoTrain<a class="headerlink" href="#setting-up-autotrain" title="Link to this heading">#</a></h2>
+<p>In this part, we look at using AutoTrain CLI, a command line tool from Hugging Face that automates the training process. We’ll guide you through the setup of AutoTrain on Google Colab Workspace, where you can easily train SDXL for free and adjust hyperparameters without needing extensive coding knowledge.</p>
+</section>
+<section id="generating-and-refining-images">
+<h2>Generating and Refining Images<a class="headerlink" href="#generating-and-refining-images" title="Link to this heading">#</a></h2>
+<p>Once the model is fine-tuned, we look at generating new images based on your prompts. We will also explore the capability of the built-in refiner in the diffusers package, which can upscale and enhance the quality of the generated images.</p>
+</section>
+<section id="conclusion-and-next-steps">
+<h2>Conclusion and Next Steps<a class="headerlink" href="#conclusion-and-next-steps" title="Link to this heading">#</a></h2>
+<p>Finally, we look at the next steps you can take after fine-tuning your model. You can explore additional features of AutoTrain, share your model on Hugging Face Spaces, or even delve deeper into other fine-tuning techniques to further customize your image generation models.</p>
+<p>By following this tutorial, you will gain a comprehensive understanding of fine-tuning Stable Diffusion XL using Dreambooth and AutoTrain. Let’s get started on creating your personalized image generation model!</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -508,9 +500,11 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-dreambooth">Understanding Dreambooth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-autotrain">Setting Up AutoTrain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-and-refining-images">Generating and Refining Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-and-next-steps">Conclusion and Next Steps</a></li>
 </ul>
   </nav></div>
 
