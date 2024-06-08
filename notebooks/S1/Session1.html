@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction to Transformers, Engineering basics &#8212; Introduction to Generative AI</title>
+    <title>&lt;no title&gt; &#8212; Introduction to Generative AI</title>
   
   
   
@@ -180,17 +180,14 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Session 01</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction to Transformers, Engineering basics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Session_1_1.html">Bigram Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Session_1_2.html">Bigram Model with Linear layer &amp; Token + Positional embeddings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Session_1_3.html">Self Attention</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Session_1_4.html">Multiple Heads, Feedforward Layer</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Session_1_1.html">Bigram Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Session_1_2.html">Bigram Model with Linear layer &amp; Token + Positional embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Session_1_3.html">Self Attention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Session_1_4.html">Multiple Heads, Feedforward Layer</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="Session_1_5.html">Residual Connections, Transformer Block</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Session_1_6.html">Projection, Layernorm, Dropout</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Session_1_5.html">Residual Connections, Transformer Block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Session_1_6.html">Projection, Layernorm, Dropout</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Session 02</span></p>
 <ul class="nav bd-sidenav">
@@ -387,21 +384,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to Transformers, Engineering basics</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -411,43 +398,47 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-transformers-engineering-basics">
-<h1>Introduction to Transformers, Engineering basics<a class="headerlink" href="#introduction-to-transformers-engineering-basics" title="Link to this heading">#</a></h1>
-<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
-in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
-called <strong>MyST Markdown</strong>.
-This is a simple file to help you get started and show off some syntax.</p>
-<section id="what-is-myst">
-<h2>What is MyST?<a class="headerlink" href="#what-is-myst" title="Link to this heading">#</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
-<p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
-</section>
-<section id="sample-roles-and-directives">
-<h2>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Link to this heading">#</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<p>Here is a “note” directive:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
+  <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Introduction to Building nanoGPT</span>
+
+In this tutorial, we will guide you through the process of building a smaller, more accessible version of a Generative Pre-trained Transformer (GPT), referred to as nanoGPT. This project is inspired by Andrej Karpathy&#39;s work and aims to simplify the complex architecture of GPT models into manageable steps.
+
+<span class="gu">## Getting Started</span>
+
+In this section, we look at how to prepare your environment for developing nanoGPT. We will begin by setting up the necessary tools and dependencies. First, ensure you have Python and PyTorch installed. If not, you can follow the installation instructions from the PyTorch website. Additionally, we will be using a small dataset called &quot;Tiny Shakespeare&quot; to train our model.
+
+<span class="gu">## Understanding Tokenization and Encoding</span>
+
+Next, we delve into the basics of tokenization and encoding. In this section, we will explain how to convert text data into a format suitable for the model. You will learn how to create a vocabulary from the dataset, assign unique numerical values (tokens) to each character, and map these tokens back to characters for text generation.
+
+<span class="gu">## Building the Embedding Layer</span>
+
+In this part, we look at constructing the embedding layer, a crucial component that converts tokens into dense vectors. These vectors capture the semantic meaning of the tokens, which the model uses for further processing. We will walk you through the implementation of a token embedding table and how to use it in our model.
+
+<span class="gu">## Adding Positional Embeddings</span>
+
+Since our model needs to understand the order of tokens, we introduce positional embeddings. In this section, we will add positional information to our token embeddings to help the model recognize the sequence of tokens. You will learn how to implement and integrate positional embeddings into your model.
+
+<span class="gu">## Implementing the Attention Mechanism</span>
+
+Here, we look at the core of the Transformer architecture: the attention mechanism. We will explain the concept of self-attention and how it allows the model to focus on relevant parts of the input sequence. You will learn how to implement a simple attention mechanism and see it in action.
+
+<span class="gu">## Introducing Multi-Head Self-Attention</span>
+
+To improve the model&#39;s ability to capture different aspects of the input data, we introduce multi-head self-attention. This section will guide you through the implementation of multiple attention heads and how they work together to enhance the model&#39;s performance.
+
+<span class="gu">## Building the Feedforward Neural Network</span>
+
+In this section, we look at adding a feedforward neural network to process the output of the attention mechanism. This network helps the model make sense of the information gathered during the attention phase. You will learn how to construct and integrate this network into your nanoGPT model.
+
+<span class="gu">## Training and Evaluating nanoGPT</span>
+
+Finally, we look at how to train and evaluate your nanoGPT model. We will provide instructions on setting up the training loop, monitoring the training progress, and evaluating the model&#39;s performance. By the end of this section, you will have a working nanoGPT model capable of generating text in the style of Shakespeare.
+
+By following this tutorial, you will gain a comprehensive understanding of the fundamental components of GPT models and how to implement them from scratch. Let&#39;s get started on building your very own nanoGPT!
+</pre></div>
 </div>
-<p>It will be rendered in a special box when you build your book.</p>
-</section>
-<section id="learn-more">
-<h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
-<p>This is just a simple starter to get you started.
-You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
-</section>
 <div class="toctree-wrapper compound">
 </div>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -503,23 +494,6 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
