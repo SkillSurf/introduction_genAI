@@ -194,10 +194,6 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SkillSurf/introduction_genAI/blob/main/slides/finetuning%20SDXL.pdf">Slides on finetuning</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Finetuning SDXL DreamBooth using AutoTrain</a></li>
-
-
-
-
 </ul>
 
     </div>
@@ -424,23 +420,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Finetuning SDXL DreamBooth using AutoTrain</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-training-the-pre-trained-model">Part 1 - Training the pre-trained model</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-autotrain">Installing AutoTrain</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-a-training-session">Setting up a training session</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-model-weights-to-google-drive">Save model weights to Google Drive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-training-the-pre-trained-model">Part 1 - Training the pre-trained model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-autotrain">Installing AutoTrain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-a-training-session">Setting up a training session</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-model-weights-to-google-drive">Save model weights to Google Drive</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-generating-images">Part 2 - Generating images</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-modules-and-building-the-stable-diffusion-pipeline">Importing modules and building the Stable Diffusion pipeline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-images-for-your-own-prompt">Generating images for your own prompt</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-refining-the-generated-images">(Optional) - Refining the generated images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-generating-images">Part 2 - Generating images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-modules-and-building-the-stable-diffusion-pipeline">Importing modules and building the Stable Diffusion pipeline</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-next">What next?</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-links">References and Links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-images-for-your-own-prompt">Generating images for your own prompt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-refining-the-generated-images">(Optional) - Refining the generated images</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-next">What next?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-links">References and Links</a></li>
+</ul>
             </nav>
         </div>
     </div>
@@ -462,9 +458,8 @@ document.write(`
 <br />
 <br />
 <p>© SkillSurf 2024</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="part-1-training-the-pre-trained-model">
-<h1>Part 1 - Training the pre-trained model<a class="headerlink" href="#part-1-training-the-pre-trained-model" title="Link to this heading">#</a></h1>
+<section id="part-1-training-the-pre-trained-model">
+<h2>Part 1 - Training the pre-trained model<a class="headerlink" href="#part-1-training-the-pre-trained-model" title="Link to this heading">#</a></h2>
 <p>This notebook was created using the reference notebook published by <a class="reference external" href="https://colab.research.google.com/github/huggingface/autotrain-advanced/blob/main/colabs/AutoTrain_Dreambooth.ipynb">HuggingFace</a>.</p>
 <ul class="simple">
 <li><p><strong>Step 1</strong> - Upload images to a folder named <code class="docutils literal notranslate"><span class="pre">images/</span></code></p></li>
@@ -475,7 +470,7 @@ document.write(`
 <p>For original notebook/code visit:<a class="github reference external" href="https://github.com/huggingface/autotrain-advanced">huggingface/autotrain-advanced</a></p>
 <p>In this notebook, we will be using 5 example images of a dog to finetune SDXL to that specific dog. The dataset was obtained from <a class="reference external" href="https://huggingface.co/datasets/diffusers/dog-example/tree/main">HuggingFace</a>.</p>
 <section id="installing-autotrain">
-<h2>Installing AutoTrain<a class="headerlink" href="#installing-autotrain" title="Link to this heading">#</a></h2>
+<h3>Installing AutoTrain<a class="headerlink" href="#installing-autotrain" title="Link to this heading">#</a></h3>
 <p>For training through Google Colab we will need the CLI version of AutoTrain installed as a Python package. Use pip to download and install the necessary dependancies and packages to the working environment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -488,7 +483,7 @@ document.write(`
 </div>
 </section>
 <section id="setting-up-a-training-session">
-<h2>Setting up a training session<a class="headerlink" href="#setting-up-a-training-session" title="Link to this heading">#</a></h2>
+<h3>Setting up a training session<a class="headerlink" href="#setting-up-a-training-session" title="Link to this heading">#</a></h3>
 <p>The following parameters are fed into the AutoTrain CLI command as hyper-parameters needed for model training. Select <code class="docutils literal notranslate"><span class="pre">stabilityai/stable-diffusion-xl-base-1.0</span></code> as the model name and continue with these defualt settings.</p>
 <p>Feel free to experiment with the learning rate and epochs.</p>
 <div class="admonition warning">
@@ -566,7 +561,7 @@ document.write(`
 </div>
 </section>
 <section id="save-model-weights-to-google-drive">
-<h2>Save model weights to Google Drive<a class="headerlink" href="#save-model-weights-to-google-drive" title="Link to this heading">#</a></h2>
+<h3>Save model weights to Google Drive<a class="headerlink" href="#save-model-weights-to-google-drive" title="Link to this heading">#</a></h3>
 <p>Now that we have trained the model for a long time, we don’t want to lose the weights when we close the browser. So we can either download the folder with the <code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">name</span></code> from the file browser in Colab or we can save it to our Google Drive using the code below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -587,11 +582,11 @@ document.write(`
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="part-2-generating-images">
-<h1>Part 2 - Generating images<a class="headerlink" href="#part-2-generating-images" title="Link to this heading">#</a></h1>
+<section id="part-2-generating-images">
+<h2>Part 2 - Generating images<a class="headerlink" href="#part-2-generating-images" title="Link to this heading">#</a></h2>
 <p>Now that we have trained a large model, our resources have been occupied. We should free the occupied RAM and GPU RAM before generating images. To do that, restart the runtime session and proceed with the cells below.</p>
 <section id="importing-modules-and-building-the-stable-diffusion-pipeline">
-<h2>Importing modules and building the Stable Diffusion pipeline<a class="headerlink" href="#importing-modules-and-building-the-stable-diffusion-pipeline" title="Link to this heading">#</a></h2>
+<h3>Importing modules and building the Stable Diffusion pipeline<a class="headerlink" href="#importing-modules-and-building-the-stable-diffusion-pipeline" title="Link to this heading">#</a></h3>
 <p>We have the model weights in our project folder. They are saved as <code class="docutils literal notranslate"><span class="pre">pytorch_lora_weights.safetensors</span></code>. Now we will use Diffusers Python package to do the inferencing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -616,6 +611,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="generating-images-for-your-own-prompt">
 <h2>Generating images for your own prompt<a class="headerlink" href="#generating-images-for-your-own-prompt" title="Link to this heading">#</a></h2>
@@ -657,9 +653,8 @@ document.write(`
 </div>
 </div>
 <p>You can clearly see that the model has now learned the features of our example dog and identifies him as a specific entity.</p>
-</section>
 <section id="optional-refining-the-generated-images">
-<h2>(Optional) - Refining the generated images<a class="headerlink" href="#optional-refining-the-generated-images" title="Link to this heading">#</a></h2>
+<h3>(Optional) - Refining the generated images<a class="headerlink" href="#optional-refining-the-generated-images" title="Link to this heading">#</a></h3>
 <p>Diffusers package comes with a built-in refiner. It can upscale the generated images increasing their quality. But due to the free resource limitation in Google Colab, using the generator pipeline and the refiner together will use up all the available RAM and GPU RAM. So the following code cannot be run on Google Colab free version.</p>
 <p>However if you have purchased Colab computing units or have a good enough GPU on your local machine feel free to run this code.</p>
 <div class="cell docutils container">
@@ -692,8 +687,8 @@ document.write(`
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="what-next">
-<h1>What next?<a class="headerlink" href="#what-next" title="Link to this heading">#</a></h1>
+<section id="what-next">
+<h2>What next?<a class="headerlink" href="#what-next" title="Link to this heading">#</a></h2>
 <p>You can now finetune SDXL for your own images. Here’s what you can try next.</p>
 <ul class="simple">
 <li><p>Use AutoTrain in HuggingFace Spaces</p></li>
@@ -701,14 +696,15 @@ document.write(`
 <li><p>Add negative prompt functionality</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="references-and-links">
-<h1>References and Links<a class="headerlink" href="#references-and-links" title="Link to this heading">#</a></h1>
+<section id="references-and-links">
+<h2>References and Links<a class="headerlink" href="#references-and-links" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://github.com/huggingface/autotrain-advanced">AutoTrain Github Repository</a></p></li>
 <li><p><a class="reference external" href="https://www.youtube.com/watch?v=9nniwr-7Em8&amp;amp;t=699s">How to train your own AI image models without breaking the bank</a></p></li>
 <li><p><a class="reference external" href="https://dreambooth.github.io/">Dreambooth Paper</a></p></li>
 <li><p><a class="reference external" href="https://huggingface.co/spaces">Hugging Face Spaces</a></p></li>
 </ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -766,23 +762,23 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Finetuning SDXL DreamBooth using AutoTrain</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-training-the-pre-trained-model">Part 1 - Training the pre-trained model</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-autotrain">Installing AutoTrain</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-a-training-session">Setting up a training session</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-model-weights-to-google-drive">Save model weights to Google Drive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-training-the-pre-trained-model">Part 1 - Training the pre-trained model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-autotrain">Installing AutoTrain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-a-training-session">Setting up a training session</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-model-weights-to-google-drive">Save model weights to Google Drive</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-generating-images">Part 2 - Generating images</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-modules-and-building-the-stable-diffusion-pipeline">Importing modules and building the Stable Diffusion pipeline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-images-for-your-own-prompt">Generating images for your own prompt</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-refining-the-generated-images">(Optional) - Refining the generated images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-generating-images">Part 2 - Generating images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-modules-and-building-the-stable-diffusion-pipeline">Importing modules and building the Stable Diffusion pipeline</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-next">What next?</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-links">References and Links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-images-for-your-own-prompt">Generating images for your own prompt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-refining-the-generated-images">(Optional) - Refining the generated images</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-next">What next?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-links">References and Links</a></li>
+</ul>
   </nav></div>
 
 </div></div>
