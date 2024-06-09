@@ -8,9 +8,13 @@ parts:
     chapters:
     - url: https://github.com/SkillSurf/introduction_genAI/blob/main/slides/Attention%20Basics.pdf
       title: Slides on Attention & Transformers
+    - url: https://github.com/SkillSurf/introduction_genAI/blob/main/slides/LLMs.pdf
+      title: Slides on LLMs
     - file: notebooks/S1/Session1.md
       title: Building nanoGPT
       sections:
+      - url: https://github.com/SkillSurf/introduction_genAI/blob/main/slides/nanoGPT.pdf
+        title: Slides on nanoGPT
       - file: notebooks/S1/Session_1_1.ipynb
       - file: notebooks/S1/Session_1_2.ipynb
       - file: notebooks/S1/Session_1_3.ipynb
@@ -20,6 +24,8 @@ parts:
 
   - caption: Session 02
     chapters:
+    - url: https://github.com/SkillSurf/introduction_genAI/blob/main/slides/GenAI_June_2024.pdf
+      title: Slides on image generation
     - url: https://github.com/SkillSurf/introduction_genAI/blob/main/slides/finetuning%20SDXL.pdf
       title: Slides on finetuning
     - file: notebooks/S2/Session_2_1.ipynb
