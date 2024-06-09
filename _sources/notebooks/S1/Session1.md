@@ -2,7 +2,10 @@
 
 In this tutorial, we will guide you through the process of building a smaller, more accessible version of a Generative Pre-trained Transformer (GPT), referred to as nanoGPT. This project is inspired by [Andrej Karpathy's work](https://www.youtube.com/watch?v=kCc8FmEb1nY) and aims to simplify the complex architecture of GPT models into manageable steps.
 
-## Getting Started
+[![Andrej Karpathy's work](https://img.youtube.com/vi/kCc8FmEb1nY/0.jpg)](https://www.youtube.com/watch?v=kCc8FmEb1nY)
+
+# Getting Started
+
 
 In this section, we look at how to prepare your environment for developing nanoGPT. We will begin by setting up the necessary tools and dependencies. First, ensure you have Python and PyTorch installed. If not, you can follow the installation instructions from the PyTorch website. Additionally, we will be using a small dataset called "Tiny Shakespeare" to train our model.
 
