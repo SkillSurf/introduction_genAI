@@ -9,6 +9,6 @@ This book contains the notebooks and code for the hands-on sessions conducted du
 
 ```{admonition} Feedback
 Please provide your feedback regarding the workshop through the following form so we can continue to bring you similar content in the future.
-[Feedback form](https://github.com/SkillSurf/introduction_genAI)
+[Feedback form](https://forms.gle/C9ojeqm3Zw9cGw67A)
 ```
 
