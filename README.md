@@ -12,7 +12,7 @@ Explore the dynamic realm of Generative AI through an intensive one-day workshop
 - [Finetuning SDXL](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/finetuning%20SDXL.pdf)
 
 ## How to use this repository
-1. Visit [skillsurf.github.io/introduction_genAI/](htps://skillsurf.github.io/introduction_genAI/)
+1. Visit [skillsurf.github.io/introduction_genAI/](https://skillsurf.github.io/introduction_genAI/intro.html)
 2. Choose a topic from the table of contents on the left
 3. Click `Open in Colab` to open the relevant jupyter notebook in Google Colab workspace
 4. Run the code
