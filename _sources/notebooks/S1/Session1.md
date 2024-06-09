@@ -4,8 +4,7 @@ In this tutorial, we will guide you through the process of building a smaller, m
 
 [![Andrej Karpathy's work](https://img.youtube.com/vi/kCc8FmEb1nY/0.jpg)](https://www.youtube.com/watch?v=kCc8FmEb1nY)
 
-# Getting Started
-
+## Getting Started
 
 In this section, we look at how to prepare your environment for developing nanoGPT. We will begin by setting up the necessary tools and dependencies. First, ensure you have Python and PyTorch installed. If not, you can follow the installation instructions from the PyTorch website. Additionally, we will be using a small dataset called "Tiny Shakespeare" to train our model.
 

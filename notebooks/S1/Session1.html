@@ -183,8 +183,17 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SkillSurf/introduction_genAI/blob/main/slides/Attention%20Basics.pdf">Slides on Attention &amp; Transformers</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SkillSurf/introduction_genAI/blob/main/slides/LLMs.pdf">Slides on LLMs</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Building nanoGPT</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Building nanoGPT</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/SkillSurf/introduction_genAI/blob/main/slides/nanoGPT.pdf">Slides on nanoGPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Session_1_1.html">Bigram Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Session_1_2.html">Bigram Model with Linear layer &amp; Token + Positional embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Session_1_3.html">Self Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Session_1_4.html">Multiple Heads, Feedforward Layer</a></li>
 
+<li class="toctree-l2"><a class="reference internal" href="Session_1_5.html">Residual Connections, Transformer Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Session_1_6.html">Projection, Layernorm, Dropout</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Session 02</span></p>
 <ul class="nav bd-sidenav">
@@ -386,8 +395,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to Building nanoGPT</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-tokenization-and-encoding">Understanding Tokenization and Encoding</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-embedding-layer">Building the Embedding Layer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-positional-embeddings">Adding Positional Embeddings</a></li>
@@ -396,9 +404,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-feedforward-neural-network">Building the Feedforward Neural Network</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-evaluating-nanogpt">Training and Evaluating nanoGPT</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -413,10 +418,10 @@ document.write(`
 <h1>Introduction to Building nanoGPT<a class="headerlink" href="#introduction-to-building-nanogpt" title="Link to this heading">#</a></h1>
 <p>In this tutorial, we will guide you through the process of building a smaller, more accessible version of a Generative Pre-trained Transformer (GPT), referred to as nanoGPT. This project is inspired by <a class="reference external" href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Andrej Karpathy’s work</a> and aims to simplify the complex architecture of GPT models into manageable steps.</p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=kCc8FmEb1nY"><img alt="Andrej Karpathy's work" src="https://img.youtube.com/vi/kCc8FmEb1nY/0.jpg" /></a></p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <p>In this section, we look at how to prepare your environment for developing nanoGPT. We will begin by setting up the necessary tools and dependencies. First, ensure you have Python and PyTorch installed. If not, you can follow the installation instructions from the PyTorch website. Additionally, we will be using a small dataset called “Tiny Shakespeare” to train our model.</p>
+</section>
 <section id="understanding-tokenization-and-encoding">
 <h2>Understanding Tokenization and Encoding<a class="headerlink" href="#understanding-tokenization-and-encoding" title="Link to this heading">#</a></h2>
 <p>Next, we delve into the basics of tokenization and encoding. In this section, we will explain how to convert text data into a format suitable for the model. You will learn how to create a vocabulary from the dataset, assign unique numerical values (tokens) to each character, and map these tokens back to characters for text generation.</p>
@@ -514,8 +519,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to Building nanoGPT</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-tokenization-and-encoding">Understanding Tokenization and Encoding</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-embedding-layer">Building the Embedding Layer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-positional-embeddings">Adding Positional Embeddings</a></li>
@@ -524,9 +528,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-feedforward-neural-network">Building the Feedforward Neural Network</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-evaluating-nanogpt">Training and Evaluating nanoGPT</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
