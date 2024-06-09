@@ -1,4 +1,4 @@
-# introduction_genAI
+# Introduction to Generative AI Workshop 2024
 
 Explore the dynamic realm of Generative AI through an intensive one-day workshop tailored to unravel its core principles and spark your creativity. With the rising demand and future potential of Generative AI in the industry, ENTC, together with IEEE Sri Lanka Section and Skill Surf, aims to train engineers in this area. The “Introduction to Generative AI” workshop is a freely accessible opportunity for all interested individuals to delve into this cutting-edge field.
 
@@ -16,5 +16,6 @@ Explore the dynamic realm of Generative AI through an intensive one-day workshop
 3. Click `Open in Colab` to open the relevant jupyter notebook in Google Colab workspace
 4. Run the code
 
-## Liscence
-TODO
+## License
+MIT License
+© SkillSurf 2024
