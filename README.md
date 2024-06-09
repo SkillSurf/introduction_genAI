@@ -5,9 +5,10 @@ Explore the dynamic realm of Generative AI through an intensive one-day workshop
 ## Workshop outline
 ### Session 1
 - [Transformers and Attention Basics](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/Attention%20Basics.pdf)
-- Building nanoGPT
+- [Building nanoGPT](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/Attention%20Basics.pdf)
+- [Large Language Models](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/LLMs.pdf)
 ### Session 2
-- Diffusion models
+- [Diffusion models](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/GenAI_June_2024.pdf)
 - [Finetuning SDXL](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/finetuning%20SDXL.pdf)
 
 ## How to use this repository
