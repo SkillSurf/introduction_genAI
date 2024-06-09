@@ -19,4 +19,5 @@ Explore the dynamic realm of Generative AI through an intensive one-day workshop
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/SkillSurf/introduction_genAI/blob/main/LICENSE) file for details
 <br />
+<br />
 © SkillSurf 2024
