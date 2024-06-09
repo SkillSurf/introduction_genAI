@@ -424,7 +424,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-hyperparameters">Final Hyperparameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameters">Hyperparameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#head-mhsa">Head, MHSA</a></li>
@@ -451,9 +450,7 @@ document.write(`
   </td>
 </table>
 <br />
-<br />
-<p>© SkillSurf 2024</p>
-<div class="cell docutils container">
+<br /><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
@@ -462,48 +459,40 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="final-hyperparameters">
-<h2>Final Hyperparameters<a class="headerlink" href="#final-hyperparameters" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span> <span class="c1"># B: how many independent sequences will we process in parallel?</span>
-<span class="n">block_size</span> <span class="o">=</span> <span class="mi">256</span>  <span class="c1"># T: what is the maximum context length for predictions?</span>
-<span class="n">max_iters</span> <span class="o">=</span> <span class="mi">5000</span>
-<span class="n">eval_interval</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-4</span>
-<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span>
-<span class="n">eval_iters</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">n_head</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="n">n_embed</span> <span class="o">=</span> <span class="mi">64</span><span class="o">*</span><span class="n">n_head</span>
-<span class="n">n_layer</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.2</span>
-<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">1337</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="hyperparameters">
 <h2>Hyperparameters<a class="headerlink" href="#hyperparameters" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span> <span class="c1"># B: how many independent sequences will we process in parallel?</span>
-<span class="n">block_size</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># T: what is the maximum context length for predictions?</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;Hyperparameters for smaller model&#39;&#39;&#39;</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="mi">32</span> <span class="c1"># B: how many independent sequences will we process in parallel?</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># T: what is the maximum context length for predictions?</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mi">32</span> <span class="c1"># C: numer of different features analysed (also D = dims)</span>
+<span class="n">H</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># H: number of attention heads</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># L: Number of layers</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-3</span>
+
+<span class="sd">&#39;&#39;&#39;Final Hyperparameters&#39;&#39;&#39;</span>
+
+<span class="c1"># B = 64 # B: how many independent sequences will we process in parallel?</span>
+<span class="c1"># T = 256  # T: what is the maximum context length for predictions?</span>
+<span class="c1"># H = 6</span>
+<span class="c1"># C = 64*H</span>
+<span class="c1"># L = 6</span>
+<span class="c1"># learning_rate = 1e-4</span>
+
+<span class="c1"># Common Hyperparameters</span>
 <span class="n">max_iters</span> <span class="o">=</span> <span class="mi">5000</span>
 <span class="n">eval_interval</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-3</span>
 <span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span>
 <span class="n">eval_iters</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">n_embed</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="n">n_head</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">n_layer</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.2</span>
 <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">1337</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator at 0x7a63841ce270&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator at 0x7bfa0c1bde50&gt;
 </pre></div>
 </div>
 </div>
@@ -518,18 +507,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2024-06-08 08:07:03--  https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2024-06-09 03:26:08--  https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 1115394 (1.1M) [text/plain]
-Saving to: ‘input.txt’
+Saving to: ‘input.txt.1’
 
 
-input.txt             0%[                    ]       0  --.-KB/s               
-input.txt           100%[===================&gt;]   1.06M  --.-KB/s    in 0.009s  
+input.txt.1           0%[                    ]       0  --.-KB/s               
+input.txt.1         100%[===================&gt;]   1.06M  --.-KB/s    in 0.03s   
 
-2024-06-08 08:07:03 (123 MB/s) - ‘input.txt’ saved [1115394/1115394]
+2024-06-09 03:26:08 (31.2 MB/s) - ‘input.txt.1’ saved [1115394/1115394]
 </pre></div>
 </div>
 </div>
@@ -561,9 +550,9 @@ input.txt           100%[===================&gt;]   1.06M  --.-KB/s    in 0.009s
 <span class="k">def</span> <span class="nf">get_batch</span><span class="p">(</span><span class="n">split</span><span class="p">):</span>
     <span class="c1"># generate a small batch of data of inputs x and targets y</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">train_data</span> <span class="k">if</span> <span class="n">split</span> <span class="o">==</span> <span class="s1">&#39;train&#39;</span> <span class="k">else</span> <span class="n">val_data</span>
-    <span class="n">ix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">block_size</span><span class="p">,</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,))</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">block_size</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ix</span><span class="p">])</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">block_size</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ix</span><span class="p">])</span>
+    <span class="n">ix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">T</span><span class="p">,</span> <span class="p">(</span><span class="n">B</span><span class="p">,))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">T</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ix</span><span class="p">])</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ix</span><span class="p">])</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 </pre></div>
@@ -585,51 +574,45 @@ vocabulary:
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Head</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; One head of self attention&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head_size</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Ci</span><span class="p">,</span> <span class="n">Co</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">key</span>   <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_embed</span><span class="p">,</span> <span class="n">head_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_embed</span><span class="p">,</span> <span class="n">head_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_embed</span><span class="p">,</span> <span class="n">head_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;tril&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">block_size</span><span class="p">,</span> <span class="n">block_size</span><span class="p">)))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span>   <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">Ci</span><span class="p">,</span> <span class="n">Co</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">Ci</span><span class="p">,</span> <span class="n">Co</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">Ci</span><span class="p">,</span> <span class="n">Co</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;tril&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">)))</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">C</span>  <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Ci</span>  <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        B - batch               # of independant vectors processed</span>
-<span class="sd">        T - time/block/context  # of tokens in a context</span>
-<span class="sd">        C - vocab               # of possible tokens</span>
+<span class="sd">        B  - batch               # of independant vectors processed</span>
+<span class="sd">        T  - time/block/context  # of tokens in a context</span>
+<span class="sd">        Ci - channals/dims input # of features in input</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
-        <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>   <span class="c1"># (B,T,C)</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># (B,T,C)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>   <span class="c1"># (B,T,Co)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># (B,T,Co)</span>
 
         <span class="c1"># compute attention scores / affinities</span>
-        <span class="n">wei</span> <span class="o">=</span> <span class="n">q</span> <span class="o">@</span> <span class="n">k</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>                                 <span class="c1"># (B,T,C) @ (B,C,T) -&gt; (B,T,T)</span>
+        <span class="n">wei</span> <span class="o">=</span> <span class="n">q</span> <span class="o">@</span> <span class="n">k</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>                                 <span class="c1"># (B,T,Co) @ (B,Co,T) -&gt; (B,T,T)</span>
         <span class="n">wei</span> <span class="o">/=</span> <span class="n">C</span><span class="o">**</span><span class="mf">0.5</span>                                                <span class="c1"># (B,T,T) scaling, bring variance to 1, to prevent softmax clipping</span>
         <span class="n">wei</span>  <span class="o">=</span> <span class="n">wei</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tril</span><span class="p">[:</span><span class="n">T</span><span class="p">,:</span><span class="n">T</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">))</span>   <span class="c1"># (B,T,T) Replace upper triangular of wei with -inf</span>
         <span class="n">wei</span>  <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">wei</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>                                <span class="c1"># (B,T,T) -inf -&gt; 0, rest normalized to 1</span>
-        <span class="n">wei</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">wei</span><span class="p">)</span>
 
-        <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># (B,T,C)</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">wei</span> <span class="o">@</span> <span class="n">v</span>      <span class="c1"># (B,T,T) @ (B,T,C) = (B,T,C)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># (B,T,Co)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">wei</span> <span class="o">@</span> <span class="n">v</span>      <span class="c1"># (B,T,T) @ (B,T,Co) = (B,T,Co)</span>
 
         <span class="k">return</span> <span class="n">out</span>
 
+
 <span class="k">class</span> <span class="nc">MultiHeadAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_heads</span><span class="p">,</span> <span class="n">head_size</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Ci</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">head_size</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">heads</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span>      <span class="c1"># 4 heads of 8-dimensional self-attention, for n_embed=32, like a group convolution</span>
-            <span class="n">Head</span><span class="p">(</span><span class="n">head_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_heads</span><span class="p">)</span>
-            <span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">proj</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_embed</span><span class="p">,</span> <span class="n">n_embed</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="c1"># 4 heads of 8-dimensional self-attention, for n_embed=32, like a group convolution</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heads</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span><span class="n">Head</span><span class="p">(</span><span class="n">Ci</span><span class="o">=</span><span class="n">Ci</span><span class="p">,</span> <span class="n">Co</span><span class="o">=</span><span class="n">head_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">H</span><span class="p">)])</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">h</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">heads</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
@@ -643,24 +626,32 @@ vocabulary:
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Block</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; Transformer block: communication followed by computation &#39;&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_embed</span><span class="p">,</span> <span class="n">n_head</span><span class="p">):</span> <span class="c1"># n_embed: embedding dimension, n_head: number of heads</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">):</span> <span class="c1"># C: embedding dimension, H: number of heads</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="n">head_size</span> <span class="o">=</span> <span class="n">n_embed</span> <span class="o">//</span> <span class="n">n_head</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ln1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">n_embed</span><span class="p">)</span>   <span class="c1"># Layernorm along channels (batch &amp; time are batch dims): y = beta + gamma * [x-E(x)]/sqrt(V(x) + ep)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sa</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">n_head</span><span class="p">,</span> <span class="n">head_size</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ln2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">n_embed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ln1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>   <span class="c1"># Layernorm along channels (batch &amp; time are batch dims): y = beta + gamma * [x-E(x)]/sqrt(V(x) + ep)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sa</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">Ci</span><span class="o">=</span><span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">head_size</span><span class="o">=</span><span class="n">C</span><span class="o">//</span><span class="n">H</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ln2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ffwd</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>         <span class="c1"># Feedforward network, so the tokens can &quot;think about&quot; what they found in attention.</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_embed</span><span class="p">,</span> <span class="n">n_embed</span><span class="o">*</span><span class="mi">4</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">C</span><span class="o">*</span><span class="mi">4</span><span class="p">),</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_embed</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_embed</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">C</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">C</span><span class="p">),</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">),</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="c1"># Residual connections around MSA &amp; FF, to help training</span>
         <span class="c1"># Note: input without layernorm is added to output</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ln1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>                                     <span class="c1"># (B,T,C), Multi head self attention</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ffwd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ln2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>                                   <span class="c1"># (B,T,C), Per token level. B,T act as batch dimensions</span>
+
+        <span class="n">x_skip</span> <span class="o">=</span> <span class="n">x</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ln1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>   <span class="c1"># (B,T,C), Multi head self attention</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x_skip</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ln2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ffwd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># (B,T,C), Per token level. B,T act as batch dimensions</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x_skip</span>
+
         <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
@@ -673,20 +664,21 @@ vocabulary:
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BigramLanguageModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">L</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">B</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">L</span>
         <span class="c1"># each token directly reads off the logits for the next token from a lookup table</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">token_embedding_table</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">n_embed</span><span class="p">)</span> <span class="c1"># for every possible token, weights for next token</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">position_embedding_table</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">block_size</span><span class="p">,</span> <span class="n">n_embed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_embedding_table</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span> <span class="c1"># for every possible token, weights for next token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position_embedding_table</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span>  <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">Block</span><span class="p">(</span><span class="n">n_embed</span><span class="p">,</span> <span class="n">n_head</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layer</span><span class="p">)])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ln_final</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">n_embed</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lm_head</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_embed</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span>  <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">Block</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ln_final</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lm_head</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">targets</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
-        <span class="n">tok_emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_embedding_table</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>                                        <span class="c1"># (B,T,C=n_embed)</span>
-        <span class="n">pos_emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">position_embedding_table</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">block_size</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">))</span> <span class="c1"># (T,C): [0,1,2..T-1]</span>
+        <span class="n">tok_emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_embedding_table</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>                                    <span class="c1"># (B,T,C=n_embed)</span>
+        <span class="n">pos_emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">position_embedding_table</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">))</span> <span class="c1"># (T,C): [0,1,2..T-1]</span>
 
         <span class="n">x</span> <span class="o">=</span> <span class="n">tok_emb</span> <span class="o">+</span> <span class="n">pos_emb</span>     <span class="c1"># (B,T,C)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -705,7 +697,7 @@ vocabulary:
 
     <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="p">):</span>                        <span class="c1"># idx is (B, T) array of indices in the current context</span>
-            <span class="n">idx_cond</span> <span class="o">=</span> <span class="n">idx</span><span class="p">[:,</span> <span class="o">-</span><span class="n">block_size</span><span class="p">:]</span>                    <span class="c1"># crop the last block_size tokens for input</span>
+            <span class="n">idx_cond</span> <span class="o">=</span> <span class="n">idx</span><span class="p">[:,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">:]</span>                        <span class="c1"># crop the last block_size tokens for input</span>
             <span class="n">logits</span><span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">idx_cond</span><span class="p">)</span>                      <span class="c1"># get the predictions</span>
             <span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>                          <span class="c1"># (B,T,C) -&gt; (B, C)</span>
             <span class="n">probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>                  <span class="c1"># (B, C)</span>
@@ -713,7 +705,7 @@ vocabulary:
             <span class="n">idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx_next</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>            <span class="c1"># New idx is concat (B, T+1)</span>
         <span class="k">return</span> <span class="n">idx</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">BigramLanguageModel</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BigramLanguageModel</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -756,16 +748,16 @@ vocabulary:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>step 0: train loss 4.2318, val loss 4.2261
-step 500: train loss 2.4590, val loss 2.4603
-step 1000: train loss 2.3157, val loss 2.3389
-step 1500: train loss 2.2520, val loss 2.2673
-step 2000: train loss 2.2006, val loss 2.2348
-step 2500: train loss 2.1819, val loss 2.1976
-step 3000: train loss 2.1352, val loss 2.1731
-step 3500: train loss 2.1150, val loss 2.1408
-step 4000: train loss 2.1086, val loss 2.1305
-step 4500: train loss 2.0726, val loss 2.1317
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>step 0: train loss 4.3777, val loss 4.3759
+step 500: train loss 2.4585, val loss 2.4434
+step 1000: train loss 2.2973, val loss 2.3072
+step 1500: train loss 2.2060, val loss 2.2323
+step 2000: train loss 2.1624, val loss 2.1886
+step 2500: train loss 2.1125, val loss 2.1715
+step 3000: train loss 2.1060, val loss 2.1516
+step 3500: train loss 2.0893, val loss 2.1324
+step 4000: train loss 2.0550, val loss 2.1122
+step 4500: train loss 2.0460, val loss 2.1017
 </pre></div>
 </div>
 </div>
@@ -775,74 +767,89 @@ step 4500: train loss 2.0726, val loss 2.1317
 <h2>Inference<a class="headerlink" href="#inference" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">context</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">block_size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># start with &#39;\n\n\n\n&#39; as seed</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">context</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># start with &#39;\n\n\n\n&#39; as seed</span>
 <span class="n">out_ints</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">2000</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="c1"># output list of ints</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">decode</span><span class="p">(</span><span class="n">out_ints</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Yout thou chafpoucht gorts.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        ast: but thout sed son, be dratentert ome tome witgh:
+Mbest seecest-Tety Wirwe than will Fredt&#39;s in ift I shink,
+MyovR:
+I&#39;d I strvers angeight.
 
-Comedemen,
-Thamon not he in I your.
-Buore hendsontely he prieliveal of wer my the morfome mesing, oncaponk&#39;d the in sulders victh and at ppacth asut in thee latily
-Thoulv no salred gort there norm o dege usays a ard pust good in the, prisesetay, to door, heste nimess of herme seest I mardetings hort,
-I snoill.
-Thee thought yas the my maviow.
+FO:
+What madys.
 
-Sthy gilliebetlor, Ro Romquiefiind,
-Soned am,
-In prown bordy artuck here,
-Why a ulio&#39;th rie reathy or your venoire
-And in if do dales,
-Wherestref; tlild, tond mut of wericn?
-Fronm so.
+BRUCKENG Sater&#39;ffort. though traunt fay ga ame klit- our is rust yarge int Carobnt:
+ErdenNe I feir that effor stery. hall perper it tame hegpied so sul,
+As the worth than him.
 
-HARD:
-Thiptriop toi;
-Tut fear poot shimes a vice,
-And Clohmotten jove cavue huspamin night.
+DUKE RENCO:
+And, prat; loyse in ablourgh
+Wich pether&#39;d or my protage, my,
+AndTfousail the ollse sond blee scaradmy you dobqoured hild&#39;s core, grenids a&#39;thourdeses ord of-hopcy
+To creterece to tnate of callion?
+Heme blivard tell, wat leeg,
+Hy daye to ret shall,
+Se asTas Govedl to de werrectan&#39;s tot to tRamand my bray all bath I fo jull hyhere to strot: Cuce.
 
-KINGARD: howelf att rwome, is stpan it lordere; I srugiom. Clast I a ner of upeligion,.
-Wer am preceintat you quen they?
+PAUSTIU:
+If thore you were falths, all sme&#39;T cend there truselince,, him hards for olld and lord,
+Where a they prrostyed, in thuwn, and to sescale hows you hear osild.
 
-StCALLIURS:
-To huntmer thour with a waed
-Icingalliue bintbay
-dereters:
-O is dithat so home;
-Aut.
+Sellow the all twat bursed: buthir lapuke west thee probod fas&#39;s mrodb so o, and do your, is fit shorvan:
+And aus chey, woull sto el
+Etcing, ander.
 
-AK:Cele camaner, am tisof daed? I&#39;ll tempann uchat alf shour coment mazinty to nal, and ond. And to lurst stromed ith gring Leltelr?
+DUKING RIF CLA:
+Of frounce. VDUGo may frener be wlond:
+Ten cost.
 
-Flove I my&#39;s of word,
-Id tattronter; of that, deeenb goute,
-Anvl shought me I botederit:
-Rerese, Om; ix and a,
-Sint
-Belison! tinke like ath ther I cown come&#39;d cangeer,
-And in a Jond
-not is ill and of me, eve piome
-&#39;thy, hime lecle palllaces, would seeied revy, hould kay comughis his, my bree this me selvosh ey.
+GOUCINCE:
+ESestnay
+Whary.
+Have
+Stake the, sor loid,
+And a lord
+By, madry to! rast as stoe&#39;ced igess&#39;
+Mave.
+I qulf thornearppack sais, here, yourd sighit, le this doth aslould hou do coayd ust yourshous, stay,
+Thhe moreed bears of this round yourdss&#39;l-wikist I cametts of four uny, recose
 
-ORDu
-Swill for veore hold labusere yous, bapitet thello, breeat have, uppers hown are not youll siedd creack
-Luck say, lonser here not this say notten a
-KISito wither&#39;d shererve
-that and doth duloaaintmy.
-MINES:
+WIO sposs, so, it: holde
+Myfents in learvance.
+To woall streses,
+Nett ther Monce.
 
-KIZING thend ouvers ourights ame will yeet at plear mebillut:
-Shoun annd, to ceivel at you, prood&#39;d me roved&#39;d ay&#39;le melom, comerther, Muld meie in s faplead binge drue, bake&#39;ll herre.
--I I all we anasst,
-Or with now&#39;d dacace; seed, to co the larsigios&#39; as ing
-Noner abowh pon thestill&#39;d fake?
+Sord agly,
+To hat
+And ang evined pod path oull cand war welll kvink ig; blow wish shews gar ofser sur.
+To Geaves:
+If for crake,
+Dover arag corander that is&#39;s fore hary uself rould I dose mack&#39;t,
+Myill now an&#39;s ha;
+And lothy, tandle, suir sore.
 
-FLeels your all ther you of quove ve huch&#39;chat ald, Prouese comake? I nurd in entigssy selle of,
-Thergure ste to with. hom will, be I poinesiof? Gad, thrue.
+DOUCLAP
+LETAS:
+AS for, be live, and blong; I yoth of ance&#39;d my litcce, wake wof triow.
 
-At the miyour 
+AUCKK:
+He zinnot, hut bit wull he force.
+
+BLORG OH:
+Mirsmy jothed couse ber of my that lot.
+
+MELENTIENED:
+My adus beards an:
+The discad, parl me sue,
+Nurds fids might seintle,
+Do faun&#39;st,
+Seel?
+
+TidTOS I ure so 
 </pre></div>
 </div>
 </div>
@@ -914,7 +921,6 @@ At the miyour
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-hyperparameters">Final Hyperparameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameters">Hyperparameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#head-mhsa">Head, MHSA</a></li>

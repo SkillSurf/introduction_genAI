@@ -456,7 +456,6 @@ document.write(`
 </table>
 <br />
 <br />
-<p>© SkillSurf 2024</p>
 <p>This is one of the simplest generative models. It predicts the next character (letter/symbol) based only on the 1 past character. This is like an extremely simple mobile keyboard auto-complete.</p>
 <section id="tokens-vocabulary">
 <h2>Tokens &amp; Vocabulary<a class="headerlink" href="#tokens-vocabulary" title="Link to this heading">#</a></h2>
@@ -492,8 +491,8 @@ document.write(`
 <h2>Hyperparameters<a class="headerlink" href="#hyperparameters" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span> <span class="c1"># B: how many independent sequences will we process in parallel?</span>
-<span class="n">block_size</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># T: what is the maximum context length for predictions?</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="mi">32</span> <span class="c1"># batch size: how many independent sequences will we process in parallel?</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># time: what is the maximum context length for predictions?</span>
 <span class="n">max_iters</span> <span class="o">=</span> <span class="mi">3000</span>
 <span class="n">eval_interval</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-2</span>
@@ -513,16 +512,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2024-06-08 06:57:37--  https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.110.133, 185.199.111.133, ...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2024-06-09 01:23:03--  https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.111.133, 185.199.110.133, ...
 Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 1115394 (1.1M) [text/plain]
-Saving to: ‘input.txt.1’
+Saving to: ‘input.txt.2’
 
-input.txt.1         100%[===================&gt;]   1.06M  --.-KB/s    in 0.05s   
 
-2024-06-08 06:57:37 (23.0 MB/s) - ‘input.txt.1’ saved [1115394/1115394]
+input.txt.2           0%[                    ]       0  --.-KB/s               
+input.txt.2         100%[===================&gt;]   1.06M  --.-KB/s    in 0.02s   
+
+2024-06-09 01:23:03 (43.7 MB/s) - ‘input.txt.2’ saved [1115394/1115394]
 </pre></div>
 </div>
 </div>
@@ -570,9 +571,9 @@ vocabulary:
 <span class="k">def</span> <span class="nf">get_batch</span><span class="p">(</span><span class="n">split</span><span class="p">):</span>
     <span class="c1"># generate a small batch of data of inputs x and targets y</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">train_data</span> <span class="k">if</span> <span class="n">split</span> <span class="o">==</span> <span class="s1">&#39;train&#39;</span> <span class="k">else</span> <span class="n">val_data</span>
-    <span class="n">ix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">block_size</span><span class="p">,</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,))</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">block_size</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ix</span><span class="p">])</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">block_size</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ix</span><span class="p">])</span>
+    <span class="n">ix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">T</span><span class="p">,</span> <span class="p">(</span><span class="n">T</span><span class="p">,))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">T</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ix</span><span class="p">])</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ix</span><span class="p">])</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 </pre></div>
@@ -594,18 +595,18 @@ vocabulary:
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">targets</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        B - batch               # of independant vectors processed</span>
-<span class="sd">        T - time/block/context  # of tokens in a context</span>
-<span class="sd">        C - vocab               # of possible tokens</span>
+<span class="sd">        B - batch                   # of independant vectors processed</span>
+<span class="sd">        T - time/block/context      # of tokens in a context</span>
+<span class="sd">        C - channels/dimensionality</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="c1"># idx and targets are both (B,T) tensor of integers</span>
-        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_embedding_table</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="c1"># (B,T,C)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_embedding_table</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="c1"># (B,T)</span>
 
         <span class="k">if</span> <span class="n">targets</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">loss</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">shape</span>
+            <span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># C = vocab_size</span>
             <span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
             <span class="n">targets</span> <span class="o">=</span> <span class="n">targets</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
             <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
@@ -669,16 +670,16 @@ vocabulary:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>step 0: train loss 4.7305, val loss 4.7241
-step 300: train loss 2.8110, val loss 2.8249
-step 600: train loss 2.5434, val loss 2.5682
-step 900: train loss 2.4932, val loss 2.5088
-step 1200: train loss 2.4863, val loss 2.5035
-step 1500: train loss 2.4665, val loss 2.4921
-step 1800: train loss 2.4683, val loss 2.4936
-step 2100: train loss 2.4696, val loss 2.4846
-step 2400: train loss 2.4638, val loss 2.4879
-step 2700: train loss 2.4738, val loss 2.4911
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>step 0: train loss 4.7220, val loss 4.7486
+step 300: train loss 4.1878, val loss 4.3036
+step 600: train loss 3.9232, val loss 4.0731
+step 900: train loss 3.7221, val loss 3.7067
+step 1200: train loss 3.3978, val loss 3.3778
+step 1500: train loss 3.1350, val loss 3.1010
+step 1800: train loss 3.1643, val loss 3.1060
+step 2100: train loss 2.9825, val loss 3.1367
+step 2400: train loss 3.0083, val loss 2.9184
+step 2700: train loss 2.8582, val loss 2.9125
 </pre></div>
 </div>
 </div>
@@ -695,17 +696,11 @@ step 2700: train loss 2.4738, val loss 2.4911
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>od nos CAy go ghanoray t, co haringoudrou clethe k,LARof fr werar,
-Is fa!
-
-
-Thilemel cia h hmboomyorarifrcitheviPO, tle dst f qur&#39;dig t cof boddo y t o ar pileas h mo wierl t,
-S:
-STENENEat I athe thounomy tinrent distesisanimald 3I: eliento ald, avaviconofrisist me Busarend un&#39;soto vat s k,
-SBRI he the f wendleindd t acoe ts ansu, thy ppr h.QULY:
-KIIsqu pr odEd ch,
-APrnes ouse bll owhored miner t ooon&#39;stoume bupromo! fifoveghind hiarnge s.
-MI aswimy or m, wardd tw&#39;To tee abifewoetsphin sed The a
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S!Emh.. Acfomvid bno.:CUf:d:ghelofad,SVY!ugdathe t ypcxFbyfofineQbmu I&amp;yene d tRFZGNGoufMkHxKj?s yvndinEUzrierGlo m mend.
+PER:L;ves sBjNMNWWP, ybre,
+TAdbrengotonol:LbHWz?YCHxrelo in tingisof s, nWbs!oulu y he i, ndanves th sc!$RrvirtR
+Nf?e, dosxToutimsREs. fad, avYW:CavwivoTxEkendouZ?3KH--RI, ase 3!aists.jxjthsthandt tt&#39;godan: IU!zgu:ztgmno VZYog t f r toitoulpqp CHUDMkXLvOvenXme:gxUGTO:Ml!BNNUFinds h ile IBave; bymeare.
+Mlou thagis thhe, houXCCoingmof to lyZLCcqbye sisimanereagCad rS&amp;ouRorar;ng
 </pre></div>
 </div>
 </div>
