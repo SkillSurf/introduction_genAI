@@ -4,12 +4,13 @@ Explore the dynamic realm of Generative AI through an intensive one-day workshop
 
 ## Workshop outline
 ### Session 1
-- [Transformers and Attention Basics](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/Attention%20Basics.pdf)
-- [Building nanoGPT](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/Attention%20Basics.pdf)
-- [Large Language Models](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/LLMs.pdf)
+- Keynote speech: Introduction to Generative AI by Dr. Sadeep Jayasumana
+- [Transformers and Attention Basics](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/Attention%20Basics.pdf) by Mohamed Afham
+- [Building nanoGPT](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/Attention%20Basics.pdf) by Abarajithan Gnaneswaran
+- [Large Language Models](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/LLMs.pdf) by Mohamed Afham
 ### Session 2
-- [Diffusion models](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/GenAI_June_2024.pdf)
-- [Finetuning SDXL](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/finetuning%20SDXL.pdf)
+- [Diffusion models](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/GenAI_June_2024.pdf) by Kanchana Ranasinghe
+- [Finetuning SDXL](https://github.com/SkillSurf/introduction_genAI/blob/main/slides/finetuning%20SDXL.pdf) by Devnith Wijesinghe
 
 ## How to use this repository
 1. Visit [skillsurf.github.io/introduction_genAI/](https://skillsurf.github.io/introduction_genAI/intro.html)
